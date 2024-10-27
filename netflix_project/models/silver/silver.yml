@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: filmes
+    description: "Dados de filmes da Netflix limpos e transformados"
+    columns:
+      - name: SHOW_ID
+        description: "Identificador único para cada filme ou série"
+        tests:
+          - unique  # Verifica se o valor é único
+          - not_null  # Verifica se o valor não é nulo
+      - name: TITLE
+        description: "Título do filme ou série"
+        tests:
+          - not_null  # Verifica se o título não é nulo
+      - name: RELEASE_YEAR
+        description: "Ano de lançamento"
+        tests:
+          - not_null  # Verifica se o ano de lançamento não é nulo
+          - dbt_utils.expression_is_true:
+              expression: '> 1900'
+          #- dbt_utils.accepted_range:
+          #    min_value: 1900
+          #    inclusive: false
+          #- accepted_values:
+          #    Verifica se o valor é um dos aceitos
+          #    values: ['2019', '2020', '2021', '2022', '2023' ]
+      - name: RATING
+        description: "Classificação indicativa"
