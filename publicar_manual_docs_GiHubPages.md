@@ -1,6 +1,6 @@
 # Publicar atualizar manualmente GitHub Pages
 
-````bash
+```bash
 git branch -D gh-pages  
 git push origin --delete gh-pages  
 git checkout --orphan gh-pages  
